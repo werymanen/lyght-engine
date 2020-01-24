@@ -79,6 +79,6 @@ public class PrimitiveKey {
     }
 
     public String toString(){
-        return ((type == KeyType.keyboard) ? (this.getClass().getSimpleName() + "[keycode=" + keycode + ",char=" + (char) keycode + ",type=" + type) : (this.getClass().getSimpleName())) + "[keycode="+keycode+",type="+type+"]";
+        return this.getClass().getSimpleName() + "[keycode=" + keycode + ",type=" + type + ",char=" + (type == KeyType.keyboard ? Keyboard.getName(keycode) : Mouse.getName(keycode)) + "]";
     }
 }

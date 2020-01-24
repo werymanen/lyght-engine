@@ -78,6 +78,10 @@ public class Keyboard implements KeyListener {
         return typingKeys[key];
     }
 
+    public static String getName(int keyCode){
+        return "" + ((char)keyCode);
+    }
+
     /** From:
      *  @see KeyEvent
      */

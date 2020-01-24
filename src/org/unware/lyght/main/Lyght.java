@@ -51,6 +51,7 @@ public final class Lyght {
 	}
 
 	private void main() {
+		System.out.println("Copyright (c) 2020 werymanen");
 		System.out.println("Lyght "+ getVersion());
 
 		sec();

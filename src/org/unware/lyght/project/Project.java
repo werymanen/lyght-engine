@@ -2,6 +2,8 @@ package org.unware.lyght.project;
 
 import org.unware.lyght.entity.Entity;
 import org.unware.lyght.key.KeyGenerator;
+import org.unware.lyght.key.KeyType;
+import org.unware.lyght.key.PrimitiveKey;
 import org.unware.lyght.key.input.Keyboard;
 import org.unware.lyght.key.input.Mouse;
 import org.unware.lyght.render.gui.Text;
@@ -25,11 +27,11 @@ public class Project extends Game {
     private Entity e;
 
     public Project(){
-
-        e = new Entity(200, 200, 100, 150, Color.red);
+        e = new Entity(200, 200, 100, 150, Loader.load.resFileTexture("/dance.png"));
         e.addScript(new Movement(display, true));
         container.add(e);
 
+        System.out.println(new PrimitiveKey(Keyboard.KEY_2, KeyType.keyboard).toString());
     }
 
     public void render(){
