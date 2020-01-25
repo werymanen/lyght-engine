@@ -28,7 +28,9 @@ public class Entity {
         this(x, y, width, height, Loader.load.colorTexture(color));
     }
 
-    //public Entity(Rect rect, )
+    public Entity(int x, int y, int width, int height){
+        this(x, y, width, height, Color.black);
+    }
 
     public Entity(int x, int y, int width, int height, Texture texture) {
         bounds = new Rect();
@@ -47,6 +49,11 @@ public class Entity {
     public final void tick(){
         for(Script script : scripts)
             script.tick();
+    }
+
+    public final void render(){
+        for(Script script : scripts)
+            script.render();
     }
 
     public void init(){

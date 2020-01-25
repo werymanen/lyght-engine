@@ -1,6 +1,8 @@
 package org.unware.lyght.render.texture;
 
-public class Animation {
+import org.unware.lyght.script.Script;
+
+public class Animation extends Script {
 
     private int speed, index;
     private long lastTime, timer;
@@ -24,6 +26,10 @@ public class Animation {
             if(index >= textures.length)
                 index = 0;
         }
+    }
+
+    public void render(){
+        entity.setTexture(getCurrent());
     }
 
     public Texture getCurrent(){

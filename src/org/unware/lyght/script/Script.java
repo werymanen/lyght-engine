@@ -10,8 +10,9 @@ public class Script {
     public Script(){
     }
 
-    public void tick(){}
     public void start(){}
+    public void tick(){}
+    public void render(){}
 
     public final boolean add(Entity entity){
         if(this.entity != null){

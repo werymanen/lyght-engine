@@ -26,6 +26,7 @@ public class Camera extends Element {
         for(Entity e : container.getObjects()) {
             if(!e.isActive())
                 continue;
+            e.render();
             d.draw(e.getX() - gx, e.getY() - gy, e.getWidth(), e.getHeight(), e.getTexture());
         }
     }
