@@ -21,15 +21,14 @@ public final class Lyght {
 		}
 	};
 
-	private int uversion = 0;
-	private float wversion = 2.213f;
+	private static final float version = 2.3f;
 
-	public float getWVersion(){
-		return wversion;
+	public float getVersionFloat(){
+		return version;
 	}
 
 	public String getVersion(){
-		return ("u" + uversion + "w" + wversion);
+		return "Lyght" + getVersionFloat();
 	}
 
 	private int maxTps = 50, maxFps = 60;
