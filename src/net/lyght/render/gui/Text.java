@@ -11,7 +11,7 @@ public class Text extends Element {
     private net.lyght.util.Color color;
     private Font font;
 
-    public Text(int x, int y, String text, net.lyght.util.Color color, Font font) {
+    public Text(int x, int y, String text, Color color, Font font) {
         super(x, y, 0, 0);
 
         this.text = text;
@@ -32,7 +32,7 @@ public class Text extends Element {
         this.text = text;
     }
 
-    public net.lyght.util.Color getColor() {
+    public Color getColor() {
         return color;
     }
 

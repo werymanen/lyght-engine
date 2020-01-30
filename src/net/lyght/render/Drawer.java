@@ -18,12 +18,12 @@ public abstract class Drawer {
         return new Drawer() {
             Drawer parent = thls;
         @Override
-        public void drawRect(int dx, int dy, int dwidth, int dheight, net.lyght.util.Color color) {
+        public void drawRect(int dx, int dy, int dwidth, int dheight, Color color) {
             parent.drawRect(x + dx, y + dy, dwidth, dheight, color);
         }
 
         @Override
-        public void fillRect(int dx, int dy, int dwidth, int dheight, net.lyght.util.Color color) {
+        public void fillRect(int dx, int dy, int dwidth, int dheight, Color color) {
             parent.fillRect(x + dx, y + dy, dwidth, dheight, color);
         }
 
@@ -43,16 +43,16 @@ public abstract class Drawer {
         }
 
         @Override
-        public void drawString(int dx, int dy, boolean centered, String text, net.lyght.util.Color color, Font font) {
+        public void drawString(int dx, int dy, boolean centered, String text, Color color, Font font) {
             parent.drawString(x + dx, y + dy, centered, text, color, font);
         }
        };
     }
 
-    public void drawRect(Rect rect, net.lyght.util.Color color){
+    public void drawRect(Rect rect, Color color){
         drawRect(rect.x, rect.y, rect.width, rect.height, color);
     }
-    public void fillRect(Rect rect, net.lyght.util.Color color){
+    public void fillRect(Rect rect, Color color){
         fillRect(rect.x, rect.y, rect.width, rect.height, color);
     }
     public void clearRect(Rect rect){
@@ -65,8 +65,8 @@ public abstract class Drawer {
         draw(rect.x, rect.y, rect.width, rect.height, texture);
     }
 
-    public abstract void drawRect(int x, int y, int width, int height, net.lyght.util.Color color);
-    public abstract void fillRect(int x, int y, int width, int height, net.lyght.util.Color color);
+    public abstract void drawRect(int x, int y, int width, int height, Color color);
+    public abstract void fillRect(int x, int y, int width, int height, Color color);
     public abstract void clearRect(int x, int y, int width, int height);
     public abstract void draw(int x, int y, int width, int height, Image img);
     public abstract void drawString(int x, int y, boolean centered, String text, Color color, Font font);
