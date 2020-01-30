@@ -28,7 +28,7 @@ public final class Lyght {
 	}
 
 	public String getVersion(){
-		return "Lyght" + getVersionFloat();
+		return "Lyght " + getVersionFloat();
 	}
 
 	private int maxTps = 50, maxFps = 60;
@@ -51,7 +51,7 @@ public final class Lyght {
 
 	private void main() {
 		System.out.println("Copyright (c) 2020 werymanen");
-		System.out.println("Lyght "+ getVersion());
+		System.out.println(getVersion());
 
 		sec();
 
