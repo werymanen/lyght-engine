@@ -2,36 +2,43 @@ package net.lyght.util;
 
 public class Random {
 
-     public static int integer(int min, int max){
-        return (int)(integer() * max - min + 1) + min;
+    public static final java.util.Random random = new java.util.Random();
+
+
+    public static int integer(int min, int max){
+        return (int) ((flo() * max - min + 1) + min); //i dunno whats up, it works like this and its fine
      }
 
-     public static int integer(){
-         return (int) doub();
+    public static int integer(){
+         return random.nextInt();
      }
 
-     public static double doub(double min, double max){
+
+    public static double doub(double min, double max){
          return (doub() * max - min + 1) + min;
      }
 
-     public static double doub(){
-         return Math.random();
+    public static double doub(){
+         return random.nextDouble();
      }
 
-     public static float flo(){
-         return (float) doub();
+
+    public static float flo(float min, float max){
+        return (flo() * max - min + 1) + min;
+    }
+
+    public static float flo(){
+         return random.nextFloat();
      }
 
-     public static float flo(float min, float max){
-         return (int)(flo() * max - min + 1) + min;
+
+    public static long lon(long min, long max){
+        return (lon() * max - min + 1) + min;
+    }
+
+    public static long lon(){
+         return random.nextLong();
      }
 
-     public static long lon(){
-         return (long) doub();
-     }
-
-     public static long lon(long min, long max){
-         return (int)(lon() * max - min + 1) + min;
-     }
 
 }
