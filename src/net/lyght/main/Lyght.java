@@ -1,5 +1,7 @@
 package net.lyght.main;
 
+import net.lyght.util.Debug;
+
 import java.io.PrintStream;
 
 /**
@@ -17,11 +19,11 @@ public final class Lyght {
 	private PrimitiveGame game = new PrimitiveGame() {
 		@Override
 		public void sec() {
-			System.err.println("An error occurred");
+			Debug.error("An error occurred");
 		}
 	};
 
-	private static final float version = 2.3f;
+	private static final float version = 2.301f;
 
 	public float getVersionFloat(){
 		return version;
@@ -50,8 +52,8 @@ public final class Lyght {
 	}
 
 	private void main() {
-		System.out.println("Copyright (c) 2020 werymanen");
-		System.out.println(getVersion());
+		Debug.info("Copyright (c) 2020 werymanen");
+		Debug.info(getVersion());
 
 		sec();
 
@@ -132,9 +134,8 @@ public final class Lyght {
 		System.setOut(out0);
 		System.setErr(err0);
 	}
-
 	private void psinit() throws Throwable{
-		String filename = "lyght.log";
+		String filename = ".log";
 		if(out == null || err == null) {
 			out = (new PrintStream(filename) {
 				@Override
