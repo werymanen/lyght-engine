@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Lyght:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lyght_jar</output-path>
+    <root id="archive" name="Lyght.jar">
+      <element id="module-output" name="Lyght" />
+    </root>
+  </artifact>
+</component>
