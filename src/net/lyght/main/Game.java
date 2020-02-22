@@ -5,13 +5,19 @@ import net.lyght.render.Display;
 import net.lyght.render.Renderer;
 import net.lyght.render.gui.Camera;
 
+/** Lyght Game */
 public class Game extends PrimitiveGame {
 
+    /** Frame that the game is rendered in */
     protected Display display;
+    /** Renderer that renders to the display */
     protected Renderer renderer;
+    /** Container that contains entities */
     protected Container container;
+    /** Camera that the entities are rendered with */
     protected Camera camera;
 
+    /** Default constructor */
     protected Game(){
         display = new Display();
         renderer = display.getRenderer();
@@ -20,6 +26,7 @@ public class Game extends PrimitiveGame {
         renderer.add(camera);
     }
 
+    /** Event, called a given times a second */
     @Override
     public final void tick0() {
         renderer.tick();
@@ -28,6 +35,7 @@ public class Game extends PrimitiveGame {
         camera.setHeight(display.getHeight());
     }
 
+    /** Event, called when rendering */
     @Override
     public final void render0() {
         renderer.render();

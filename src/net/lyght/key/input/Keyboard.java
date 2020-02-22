@@ -7,20 +7,26 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-
+/** Responsible for keyboard input */
 public class Keyboard implements KeyListener {
 
+    /** Arrays, that contain active keys
+     * If a key is being pressed down, it is added to these arrays with the index of the keycode */
     private boolean[] keys, typingKeys;
 
+    /** Listeners, that, well.. Listen for keys */
     private ArrayList<Listener> listeners = new ArrayList();
 
+    /** Default keyboard constructor */
     public Keyboard(){
         keys = new boolean[256];
         typingKeys = new boolean[keys.length];
     }
 
+    /** Helper variable for typing keys */
     private int keyCode;
 
+    /** Event, called when a button is pressed down */
     @Override
     public void keyPressed(KeyEvent e){
         if(e.getKeyCode() > keys.length)
@@ -30,6 +36,7 @@ public class Keyboard implements KeyListener {
         press(e.getKeyCode());
     }
 
+    /** Event, called when a button is released */
     @Override
     public void keyReleased(KeyEvent e){
         if(e.getKeyCode() > keys.length)
@@ -38,6 +45,7 @@ public class Keyboard implements KeyListener {
         release(e.getKeyCode());
     }
 
+    /** Event, called when a character is pressed down */
     @Override
     public void keyTyped(KeyEvent e){
         if(e.getKeyCode() > keys.length)
@@ -45,39 +53,57 @@ public class Keyboard implements KeyListener {
         typingKeys[keyCode] = true;
     }
 
+    /** Called when a button is pressed, calling listeners
+     * @param keycode The keycode of the key that was pressed
+     * */
     private void press(int keycode){
         for(Listener l : listeners){
             l.press(keycode, KeyType.keyboard);
         }
     }
 
+    /** Called when a button is released, calling listeners
+     * @param keycode The keycode of the key that was released
+     * */
     private void release(int keycode){
         for(Listener l : listeners){
             l.release(keycode, KeyType.keyboard);
         }
     }
 
-
+    /** Called after every tick, sets every typing key to false */
     public void tick(){
         for (int i = 0; i < keys.length; i++) {
             typingKeys[i] = false;
         }
     }
 
+    /** Adds a Listener
+     * @param listener Listener to be added
+     * */
     public void addListener(Listener listener){
         if(listeners.contains(listener))
             return;
         listeners.add(listener);
     }
 
+    /** @return if the key is being pressed
+     * @param key keycode
+     * */
     public boolean key(int key){
         return keys[key];
     }
 
+    /** @return if the key is being typed
+     * @param key keycode
+     * */
     public boolean typingKey(int key){
         return typingKeys[key];
     }
 
+    /** Converts a keycode to a string
+     * @param keyCode The keycode to convert to
+     * */
     public static String getName(int keyCode){
         return "" + ((char)keyCode);
     }

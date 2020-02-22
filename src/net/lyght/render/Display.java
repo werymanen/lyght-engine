@@ -12,19 +12,27 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
-
+/** Responsible for making a frame and allowing others to draw in it */
 public class Display {
 
+	/** The frame */
 	private JFrame frame;
+	/** The canvas we're drawing to */
 	private Canvas canvas;
 
+	/** Keyboard instance */
 	public Keyboard keyboard;
+	/** Mouse instance */
 	public Mouse mouse;
 
+	/** Cursor */
 	private net.lyght.key.input.Cursor cursor;
 
+	/** Width of the frame */
 	private int width = 1280;
+	/** Height of the frame */
 	private int height = 720;
+	/** Title of the frame */
 	private final String title = "Lyght";
 
 	public Canvas getCanvas() {
@@ -35,37 +43,10 @@ public class Display {
 		return r;
 	}
 
+	/** Renderer */
 	private Renderer r;
 
-	public Display(int width, int height, String title, BufferedImage icon){
-		this(width, height, icon);
-		setTitle(title);
-	}
-	public Display(int width, int height, BufferedImage icon){
-		this(width, height);
-		setIcon(icon);
-	}
-	public Display(BufferedImage icon){
-		this();
-		setIcon(icon);
-	}
-	public Display(String title, BufferedImage icon){
-		this(icon);
-		setTitle(title);
-	}
-	public Display(String title){
-		this();
-		setTitle(title);
-	}
-	public Display(int width, int height, String title){
-		this(width, height);
-		setTitle(title);
-	}
-	public Display(int width, int height){
-		this();
-		setSize(width, height);
-	}
-
+	/** Default constructor */
 	public Display() {
 		keyboard = new Keyboard();
 		mouse = new Mouse();
@@ -100,6 +81,9 @@ public class Display {
 		frame.setVisible(true);
 	}
 
+	/** Sets the cursor to render
+	 * @param cursor New cursor
+	 * */
 	public void addCursor(net.lyght.key.input.Cursor cursor){
 		if(cursor == null ||cursor == this.cursor)
 			return;
@@ -117,10 +101,14 @@ public class Display {
 		r.add(cursor);
 	}
 
+	/** Attaches renderer
+	 * @param r Renderer to attach
+	 * */
 	public void attachRenderer(Renderer r) {
 		this.r = r;
 	}
 
+	/** Runs given times a second */
 	public void tick(){
 		mouse.reset();
 		keyboard.tick();
@@ -144,39 +132,70 @@ public class Display {
 	public int getWidth(){
 		return width;
 	}
+
 	public int getHeight(){
 		return height;
 	}
+
 	public void setWidth(int width) {
 		frame.setBounds(frame.getX(), frame.getY(), width, frame.getHeight());
 		this.width = width;
 	}
+
 	public void setHeight(int height) {
 		frame.setBounds(frame.getX(), frame.getY(), frame.getWidth(), height);
 		this.height = height;
 	}
+
+	/** Sets the size of the frame
+	 * @param width New width
+	 * @param height New height
+	 * */
 	public void setSize(int width, int height){
 		setWidth(width);
 		setHeight(height);
 	}
+
+	/** Sets the size of the frame
+	 * @param x New X coordinate
+	 * @param y New Y coordinate
+	 * @param width New width
+	 * @param height New height
+	 * */
 	public void setSize(int x, int y, int width, int height){
 		setSize(width, height);
 		setPos(x, y);
 	}
+
+	/** Sets the size of the frame
+	 * @param rect The new bounds of the frame
+	 * */
 	public void setSize(Rect rect){
 		setSize(rect.x, rect.y, rect.width, rect.height);
 	}
+
+	/** Sets the position of the frame
+	 * @param pos New position
+	 * */
 	public void setPos(Point pos){
 		setPos(pos.x, pos.y);
 	}
+
+	/** Sets the position of the frame
+	 * @param x New X coordinates
+	 * @param y New Y coordinates
+	 * */
 	public void setPos(int x, int y){
 		setX(x);
 		setY(y);
 	}
+
 	public void setX(int x){
 		frame.setBounds(x, frame.getY(), frame.getWidth(), frame.getHeight());
 	}
+
 	public void setY(int y){
 		frame.setBounds(frame.getX(), y, frame.getWidth(), frame.getHeight());
 	}
+
 }

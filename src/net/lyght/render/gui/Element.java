@@ -3,17 +3,27 @@ package net.lyght.render.gui;
 import net.lyght.render.Drawer;
 import net.lyght.util.shape.Rect;
 
+/** UI element */
 public class Element {
 
+    /** The bounds of the element */
     protected Rect bounds;
 
+    /** Default constructor
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param width Width
+     * @param height Height
+     * */
     public Element(int x, int y, int width, int height){
         bounds = new Rect(x, y, width, height);
     }
 
+    /** Runs on every render */
     public void render(Drawer d){
     }
 
+    /** Runs on every tick */
     public void tick(){
     }
 

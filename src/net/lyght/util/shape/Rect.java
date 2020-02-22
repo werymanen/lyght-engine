@@ -2,14 +2,19 @@ package net.lyght.util.shape;
 
 import java.awt.*;
 
+/** Literally two points, a width, and a height */
 public class Rect {
 
+	/** X, Y, Width, and height of the rect */
 	public int x = 0, y = 0, width = 0, height = 0;
 
+	/** Default constructor */
 	public Rect() {
-
 	}
 
+	/** Secondary constructor
+	 * @param rectangle Awt rectangle
+	 * */
 	public Rect(Rectangle rectangle) {
 		rectangle.x = x;
 		rectangle.y = y;
@@ -17,6 +22,12 @@ public class Rect {
 		rectangle.height = height;
 	}
 
+	/** Tertiary constructor
+	 * @param x X coordinate
+	 * @param y Y coordinate
+	 * @param width The width
+	 * @param height The height
+	 * */
 	public Rect(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -24,7 +35,9 @@ public class Rect {
 		this.height = height;
 	}
 
-	/** stolen from java.awt.Rectangle */
+	/** stolen from java.awt.Rectangle
+	 * @param rect The rect to check if it's in this rect
+	 * */
 	public boolean contains(Rect rect) {
 	    int thiswidth = this.width;
 	    int thisheight = this.height;
@@ -48,7 +61,9 @@ public class Rect {
 	           	(thisheight < thisy || thisheight > recty));
 	}
 
-	/** stolen from java.awt.Rectangle */
+	/** stolen from java.awt.Rectangle
+	 * @param p The point to check if it's in this rect
+	 * */
 	public boolean contains(Point p){
 		int w = this.width;
 		int h = this.height;
@@ -69,11 +84,15 @@ public class Rect {
 				(h < y || h > p.y));
 	}
 
+	/** @return A new rect, with coords of this rect's coords and the given rect's coordinates
+	 * @param r The given rect
+	 * */
 	public Rect add(Rect r){
 		return new Rect(r.x + this.x, r.y + this.y, r.width, r.height);
 	}
 
-	public Rectangle getRectangle(){
+	/** Converts to an awt Rectangle */
+	public Rectangle toRectangle(){
 		return new Rectangle(x, y, width, height);
 	}
 

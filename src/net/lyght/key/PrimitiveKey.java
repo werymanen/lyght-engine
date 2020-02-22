@@ -3,16 +3,27 @@ package net.lyght.key;
 import net.lyght.key.input.Keyboard;
 import net.lyght.key.input.Mouse;
 
+/** Holds a keycode and a key type */
 public class PrimitiveKey {
 
+    /** The keycode of the key */
     protected int keycode;
+    /** The type of the key */
     protected KeyType type;
 
+    /** Default constructor
+     * @param keycode The keycode of the key
+     * @param type The type of the key
+     * */
     public PrimitiveKey(int keycode, KeyType type){
         this.keycode = keycode;
         this.type = type;
     }
 
+    /** @return If the key is pressed down
+     * @param keyboard The keyboard to check from
+     * @param mouse The mouse to check from
+     * */
     public boolean isActive(Keyboard keyboard, Mouse mouse){
         if(type == KeyType.keyboard)
             return keyboard.key(keycode);
@@ -23,37 +34,37 @@ public class PrimitiveKey {
         return false;
     }
 
+    /** @return If the key is pressed down
+     * @param keyboard The keyboard to check from
+     * @param mouse The mouse to check from
+     * */
     public boolean is(Keyboard keyboard, Mouse mouse){
         return isActive(keyboard, mouse);
     }
 
+    /** Sets both the keycode and type
+     * @param keycode New keycode
+     * @param type New type
+     * */
     public void edit(int keycode, KeyType type){
         this.keycode = keycode;
         this.type = type;
     }
 
-    public void edit(int keycode){
-        edit(keycode, this.type);
-    }
-
-    public void edit(PrimitiveKey key){
-        edit(key.keycode, key.type);
-    }
-
-    public boolean is(int keycode, KeyType type){
+    public boolean equals(int keycode, KeyType type){
         return this.keycode == keycode && this.type == type;
     }
 
-    public boolean is(PrimitiveKey key){
-        return is(key.keycode, key.type);
+    public boolean equals(PrimitiveKey key){
+        return equals(key.keycode, key.type);
     }
 
-    public boolean is(int keycode){
-        return is(keycode, this.type);
+    public boolean equals(int keycode){
+        return equals(keycode, this.type);
     }
 
-    public boolean is(KeyType type){
-        return is(this.keycode, type);
+    public boolean equals(KeyType type){
+        return equals(this.keycode, type);
     }
 
     public int getKeycode() {
@@ -72,12 +83,14 @@ public class PrimitiveKey {
         this.type = type;
     }
 
+    @Override
     public boolean equals(Object obj){
         if(obj instanceof Key)
-            return is((PrimitiveKey) obj);
+            return equals((PrimitiveKey) obj);
         else return super.equals(obj);
     }
 
+    @Override
     public String toString(){
         return this.getClass().getSimpleName() + "[keycode=" + keycode + ",type=" + type + ",char=" + (type == KeyType.keyboard ? Keyboard.getName(keycode) : Mouse.getName(keycode)) + "]";
     }

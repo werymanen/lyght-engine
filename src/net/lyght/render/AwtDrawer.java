@@ -4,23 +4,28 @@ import net.lyght.util.Color;
 
 import java.awt.*;
 
+/** Responsible for drawing to java.awt elements */
 public class AwtDrawer extends Drawer {
 
+    /** The graphics the drawer will be drawing to */
     public Graphics g;
 
+    /** Default constructor
+     * @param g The graphics the drawer will be drawing to
+     * */
     public AwtDrawer(Graphics g){
         this.g = g;
     }
 
     @Override
     public void drawRect(int x, int y, int width, int height, net.lyght.util.Color color) {
-        g.setColor(color.getColor());
+        g.setColor(color.toColor());
         g.drawRect(x, y, width, height);
     }
 
     @Override
     public void fillRect(int x, int y, int width, int height, net.lyght.util.Color color) {
-        g.setColor(color.getColor());
+        g.setColor(color.toColor());
         g.fillRect(x, y, width, height);
     }
 
@@ -36,7 +41,7 @@ public class AwtDrawer extends Drawer {
 
     @Override
     public void drawString(int dx, int dy, boolean centered, String text, Color c, Font font) {
-        g.setColor(c.getColor());
+        g.setColor(c.toColor());
         g.setFont(font);
         int x = dx;
         int y = dy;
@@ -50,6 +55,7 @@ public class AwtDrawer extends Drawer {
 
     }
 
+    /** Disposes the graphics */
     public void dispose(){
         g.dispose();
     }

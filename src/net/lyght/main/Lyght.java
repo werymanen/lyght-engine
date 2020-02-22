@@ -5,17 +5,20 @@ import net.lyght.util.Debug;
 import java.io.PrintStream;
 
 /**
- * @author Unware
  * @author Manen
  */
 
+/** Lyght Main */
 public final class Lyght {
 
+	/** Default constructor */
 	private Lyght(){
 	}
 
+	/** Main instance */
 	public static final Lyght lyght = new Lyght();
 
+	/** Default game */
 	private PrimitiveGame game = new PrimitiveGame() {
 		@Override
 		public void sec() {
@@ -23,27 +26,40 @@ public final class Lyght {
 		}
 	};
 
+	/** Lyght version */
 	private static final float version = 2.301f;
 
+	/** @return Raw version */
 	public float getVersionFloat(){
 		return version;
 	}
 
+	/** @return Version */
 	public String getVersion(){
 		return "Lyght " + getVersionFloat();
 	}
 
+	/** Default max Ticks per second and frame per second */
 	private int maxTps = 50, maxFps = 60;
 
+	/** If the game is running */
 	private boolean running = true;
 
-	private boolean fpsControl = true;
+	/** If the tps and fps are controlled by maxTps */
 	private boolean tpsControl = true;
+	/** If the tps and fps are controlled by maxFps */
+	private boolean fpsControl = true;
 
+	/** Counts the amount of ticks in the current second */
 	private int tps = 0;
+	/** Counts the amount of frames in the current second */
 	private int fps = 0;
+	/** Counts the amount of seconds since the start of the game */
 	private int sec = 0;
 
+	/** Starts a game
+	 * @param project The game to start
+	 * */
 	public void main(PrimitiveGame project){
 		if(project == null)
 			return;
@@ -51,6 +67,7 @@ public final class Lyght {
 		main();
 	}
 
+	/** Starts the game. Called when the game is set */
 	private void main() {
 		Debug.info("Copyright (c) 2020 werymanen");
 		Debug.info(getVersion());
@@ -108,6 +125,7 @@ public final class Lyght {
 
 	}
 
+	/** Enables logging to a file */
 	public void enableLog(){
 		try{
 			psinit();
@@ -116,6 +134,7 @@ public final class Lyght {
 		}
 	}
 
+	/** Disables logging to a file */
 	public void disableLog(){
 		try{
 			psdisinit();
@@ -124,17 +143,24 @@ public final class Lyght {
 		}
 	}
 
+	/** Original System.out */
 	private PrintStream out0 = System.out;
+	/** Original System.err */
 	private PrintStream err0 = System.err;
 
+	/** New System.out */
 	private PrintStream out = null;
+	/** New System.err */
 	private PrintStream err = null;
 
+	/** Resets System.out and System.err */
 	private void psdisinit(){
 		System.setOut(out0);
 		System.setErr(err0);
 	}
-	private void psinit() throws Throwable{
+
+	/** Initializes logging and enables it */
+	private void psinit() throws Throwable {
 		String filename = ".log";
 		if(out == null || err == null) {
 			out = (new PrintStream(filename) {
@@ -169,10 +195,12 @@ public final class Lyght {
 		System.setErr(err);
 	}
 
+	/** Stops Lyght */
 	private void stop() {
 		exit(0);
 	}
 
+	/** Calls the game to tick */
 	private void tick() {
 		new Thread("LyghtTick") {
 			public void run() {
@@ -182,6 +210,7 @@ public final class Lyght {
 		}.start();
 	}
 
+	/** Calls the game to render */
 	private void render(){
 		new Thread("LyghtRender") {
 			public void run() {
@@ -191,12 +220,9 @@ public final class Lyght {
 		}.start();
 	}
 
+	/** Calls the game to run sec */
 	private void sec(){
 		game.sec();
-	}
-
-	public void set(Game game) {
-		this.game = game;
 	}
 
 	public PrimitiveGame get(){
@@ -247,6 +273,9 @@ public final class Lyght {
 		Lyght.lyght.tpsControl = tpsControl;
 	}
 
+	/** Enables or disables logging
+	 * @param active If the new logging is on
+	 * */
 	public void setLog(boolean active){
 		if(active)
 			enableLog();
@@ -254,6 +283,9 @@ public final class Lyght {
 			disableLog();
 	}
 
+	/** Stops Lyght
+	 * @param status Status code
+	 * */
 	public void exit(int status) {
 		game.stop();
 		if(status == 0)

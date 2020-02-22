@@ -9,14 +9,28 @@ import net.lyght.util.shape.Rect;
 import net.lyght.key.Key;
 import net.lyght.key.KeyType;
 
+/** Responsible for movement
+ * You would've never guessed right? */
 public class Movement extends Script {
 
+    /** Keys for input movement */
     private Key forward, left, back, right;
+    /** If key movement is active */
     private boolean keyMove;
+    /** The amount of pixels the entity moves for one keypress */
     private int amount;
 
+    /** Collision bounds */
     private Rect bounds;
 
+    /** Default constructor
+     * @param keyMove If the entity needs to move on keypresses
+     * @param forward The key which the entity will be going forward
+     * @param left The key which the entity will be going left
+     * @param back The key which the entity will be going back
+     * @param right The key which the entity will be going right
+     * @param amount The amount of pixels that the entity moves on a keypress
+     * */
     public Movement(boolean keyMove, Key forward, Key left, Key back, Key right, int amount){
         this.forward = forward;
         this.left = left;
@@ -26,10 +40,17 @@ public class Movement extends Script {
         this.amount = amount;
     }
 
+    /** Secondary constructor */
     public Movement(){
         this(false, null, null, null, null, 0);
     }
 
+    /** Tertiary constructor
+     * Will assign letters W, A, S, D
+     * @param keyboard Keyboard
+     * @param mouse Mouse
+     * @param keyMove If keypress movement is active
+     * */
     public Movement(Keyboard keyboard, Mouse mouse, boolean keyMove){
         this(
                 keyMove,
@@ -41,10 +62,16 @@ public class Movement extends Script {
         );
     }
 
+    /** Quaternary constructor
+     * @param display The display that contains the keyboard and mouse
+     * @param keyMove If keypress movement is active
+     * */
     public Movement(Display display, boolean keyMove){
         this(display.keyboard, display.mouse, keyMove);
     }
 
+    /** Input movement on tick */
+    @Override
     public void tick(){
         if(keyMove) {
             if (forward.is())
@@ -58,6 +85,9 @@ public class Movement extends Script {
         }
     }
 
+    /** Moves towards the X axis
+     * @param x Amount of move
+     * */
     private void moveX(int x){
         if(x > 0)
             for (int i = 0; i < x; i++)
@@ -70,6 +100,9 @@ public class Movement extends Script {
                 move0(-1, 0);
     }
 
+    /** Moves towards the Y axis
+     * @param y Amount of move
+     * */
     private void moveY(int y){
         if(y > 0)
             for (int i = 0; i < y; i++)
@@ -83,15 +116,27 @@ public class Movement extends Script {
 
     }
 
+    /** Moves
+     * @param x The amount of move to the Y direction
+     * @param y The amount of move to the Y direction
+     * */
     public void move(int x, int y){
         moveX(x);
         moveY(y);
     }
 
+    /** Moves in a specific angle
+     * @param angle The angle to go in
+     * @param amount The amount of pixels to go
+     * */
     public void move(float angle, int amount){
         move((int) ((amount) * java.lang.Math.sin(angle)), (int) ((amount) * java.lang.Math.cos(angle)));
     }
 
+    /** Actually moves
+     * @param x Amount of movement to the X coordinate
+     * @param y Amount of movement to the Y coordinate
+     * */
     private void move0(int x, int y) {
         boolean right = false, left = false, up = false, down = false;
 

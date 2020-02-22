@@ -4,12 +4,25 @@ import net.lyght.entity.Entity;
 import net.lyght.render.Container;
 import net.lyght.render.Drawer;
 
+/** Camera, that renders entities to the display */
 public class Camera extends Element {
 
+    /** Container that contains the entities */
     private Container container;
+    /** The position of the camera */
     private int gx, gy;
+    /** The entity to follow */
     private Entity center;
 
+    /** Default constructor
+     * @param x X coordinate of the frame
+     * @param y Y coordinate of the frame
+     * @param width Width
+     * @param height Height
+     * @param gx X coordinate on the scene
+     * @param gy Y coordinate on the scene
+     * @param container Container
+     * */
     public Camera(int x, int y, int width, int height, int gx, int gy, Container container){
         super(x, y, width, height);
         this.gx = gx;

@@ -9,22 +9,35 @@ import net.lyght.util.Color;
 import net.lyght.render.gui.Element;
 import net.lyght.render.texture.Texture;
 
+/** Renders to the screen
+ * but mostly just allows others to draw */
 public class Renderer {
 
+	/** The display for drawing to */
 	private Display display;
+	/** Buffer */
 	private BufferStrategy bs;
+	/** Drawer, that draws */
 	private Drawer g;
+	/** Cursor */
 	private Cursor cursor;
+	/** Background */
 	private Texture background;
 
+	/** Container */
 	private Container container = new Container(this);
+	/** Elements */
 	private ArrayList<Element> elements = new ArrayList<>();
 
+	/** Default constructor
+	 * @param display The display to render to
+	 * */
 	public Renderer(Display display){
 		background = new Texture(Color.darkGray);
 		this.display = display;
 	}
 
+	/** Renders */
 	public void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {
@@ -55,6 +68,7 @@ public class Renderer {
 		}
 	}
 
+	/** Ticks literally everything */
 	public void tick(){
 		for (int i = 0; i < container.getObjects().size(); i++){
 			Entity e = container.getObjects().get(i);
@@ -69,20 +83,30 @@ public class Renderer {
 		}
 	}
 
+	/** Adds the cursor
+	 * @param cursor Cursor to add
+	 * */
 	public Cursor add(Cursor cursor){
 		this.cursor = cursor;
 		return cursor;
 	}
 
+	/** Adds an element
+	 * @param element Element to add
+	 * */
 	public Element add(Element element){
 		elements.add(element);
 		return element;
 	}
 
+	/** Removes an element
+	 * @param element Element to remove
+	 * */
 	public void remove(Element element){
 		elements.remove(element);
 	}
 
+	/** Removes all elements */
 	public void clearElements(){
 		elements.clear();
 	}

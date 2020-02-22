@@ -1,22 +1,25 @@
 package net.lyght.util;
 
+/** Represents a visible color */
 public class Color {
 
+    /** The red value of the color */
     private int r = 0;
+    /** The green value of the color */
     private int g = 0;
+    /** The blue value of the color */
     private int b = 0;
 
-    public java.awt.Color getColor(){
+    /** Converts to an awt color */
+    public java.awt.Color toColor(){
         return new java.awt.Color(r, g, b);
     }
 
-    public Color(java.awt.Color color) {
-        r = color.getRed();
-        g = color.getGreen();
-        b = color.getBlue();
-        check();
-    }
-
+    /** Default constructor
+     * @param r Red value
+     * @param g Green value
+     * @param b Blue value
+     * */
     public Color(int r, int g, int b) {
         this.r = r;
         this.g = g;
@@ -24,6 +27,18 @@ public class Color {
         check();
     }
 
+    /** Secondary constructor
+     * Converts itself from an awt color
+     * @param color The awt color
+     * */
+    public Color(java.awt.Color color) {
+        r = color.getRed();
+        g = color.getGreen();
+        b = color.getBlue();
+        check();
+    }
+
+    /** Checks if the color is invalid */
     private void check() {
         if (r > 255 || g > 255 || b > 255) {
             try {

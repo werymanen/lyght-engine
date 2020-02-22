@@ -5,12 +5,23 @@ import net.lyght.util.Color;
 
 import java.awt.*;
 
+/** Text element */
 public class Text extends Element {
 
+    /** Text to be shown */
     private String text;
+    /** Color for the text to be rendered in */
     private net.lyght.util.Color color;
+    /** Font for the text to be rendered in */
     private Font font;
 
+    /** Default constructor
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param text Text
+     * @param color Color of the text
+     * @param font Font of the text
+     * */
     public Text(int x, int y, String text, Color color, Font font) {
         super(x, y, 0, 0);
 

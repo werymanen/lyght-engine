@@ -5,19 +5,33 @@ import net.lyght.util.Loader;
 
 import java.awt.image.BufferedImage;
 
+/** Texture that can be rendered */
 public class Texture {
 
+    /** Image of the texture */
     protected BufferedImage img;
+    /** Render mode */
     protected TextureRender textureRender = TextureRender.stretch;
 
-    public Texture(){
-        this.img = Loader.load.colorImage(Color.black);
-    }
+    /** Default constructor
+     * @param img The image
+     * */
     public Texture(BufferedImage img){
         this.img = img;
     }
+
+    /** Secondary constructor
+     * @param color The color to be converted to an image
+     * */
     public Texture(Color color){
         img = Loader.load.colorImage(color);
+    }
+
+    /** Tertiary constructor
+     * The texture will have a black texture
+     * */
+    public Texture(){
+        this.img = Loader.load.colorImage(Color.black);
     }
 
 
