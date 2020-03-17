@@ -6,7 +6,7 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/setup-java@1
+            - uses: workflow/setup-java@1
               with:
                   java-version: "11.0.6"
                   java-package: jdk
