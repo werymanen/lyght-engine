@@ -1,0 +1,15 @@
+name: Main Lyght Tester
+
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-java@1
+              with:
+                  java-version: "11.0.6"
+                  java-package: jdk
+                  architecture: x64
+            - run: javac *
+              working-directory: ./src
